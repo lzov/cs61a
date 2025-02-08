@@ -103,6 +103,15 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
+    sum = 0
+    while y != 0:
+        num = y % 10  # Obtener el último dígito
+        sum += num    # Sumar el dígito al total
+        y = y // 10   # Eliminar el último dígito
+    return sum        # Retornar la suma total
+    
+    
+
 
 
 def double_eights(n):
@@ -122,3 +131,18 @@ def double_eights(n):
     """
     "*** YOUR CODE HERE ***"
 
+    a = 0
+    b = 0
+    igual = False
+    while n != 0:
+        a = n % 10
+        n = n // 10
+        b = n % 10
+        if (a == b):
+            igual = True
+    return igual
+            
+    
+
+
+       
