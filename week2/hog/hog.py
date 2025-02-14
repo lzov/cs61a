@@ -80,29 +80,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
-    
-    nr = num_rolls
-    dc = dice
-    ps = player_score
-    op = opponent_score
-    
-       
-    rolls = roll_dice(nr, dc)
-    
-    bbrawl = boar_brawl(ps, op)
-    
-   
-    if nr >= 0: 
-        score = rolls
+    if num_rolls == 0:
+        return boar_brawl(player_score, opponent_score)
     else:
-        score = bbrawl
-   
-   
-    return score
-   
-    
-    
-    
+        return roll_dice(num_rolls, dice)
     
     # END PROBLEM 3
 
@@ -129,6 +110,8 @@ def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    
+    for _ 
     # END PROBLEM 4
 
 def sus_points(score):
