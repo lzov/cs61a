@@ -108,16 +108,32 @@ def is_prime(n):
 
 def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
-    # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
-    
-    for _ 
+    count = 0
+    sqrt_n = math.isqrt(n)  # Integer square root of n
+    for i in range(1, sqrt_n + 1):
+        if n % i == 0:
+            count += 1
+            if i != n // i:  # Avoid double-counting for perfect squares
+                count += 1
+    return count
+
+
     # END PROBLEM 4
 
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    
+    
+    if 3 <= factors(score) <= 4:
+        while(not is_prime(score)):
+            score += 1
+        
+        
+        
+    
+    
     # END PROBLEM 4
 
 def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
