@@ -109,12 +109,9 @@ def is_prime(n):
 def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     count = 0
-    sqrt_n = math.isqrt(n)  # Integer square root of n
-    for i in range(1, sqrt_n + 1):
-        if n % i == 0:
+    for i in range(1, n + 1):  # Iterate from 1 to n (inclusive)
+        if n % i == 0:  # Check if i is a factor of n
             count += 1
-            if i != n // i:  # Avoid double-counting for perfect squares
-                count += 1
     return count
 
 
@@ -125,10 +122,11 @@ def sus_points(score):
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
     
-    
-    if 3 <= factors(score) <= 4:
+    if 3 <= num_factors(score) <= 4:
         while(not is_prime(score)):
             score += 1
+            
+    return score
         
         
         
@@ -142,6 +140,13 @@ def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+
+    turn_points = take_turn(num_rolls, player_score, opponent_score, dice)
+    new_score = player_score + turn_points
+    adjusted_score = sus_points(new_score)
+    return adjusted_score
+    
+
     # END PROBLEM 4
 
 
