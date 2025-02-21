@@ -22,18 +22,22 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-
-    sum = 0;
-
+    
+    sum = 0
+    saw_one = False  # Flag to track if a 1 was rolled
     for _ in range(num_rolls):
-        value = dice();
-        if(value == 1):
-            return 1
+        value = dice()
+        if value == 1:
+            saw_one = True  # Set the flag if a 1 is rolled
         sum += value
-        
-    return sum
+    
+    if saw_one:
+        return 1
+    else:
+        return sum
 
     # END PROBLEM 1
+
 
 
 def boar_brawl(player_score, opponent_score):
@@ -184,10 +188,22 @@ def play(strategy0, strategy1, update,
     goal:      The game ends and someone wins when this score is reached.
     """
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
-    # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
-    # END PROBLEM 5
-    return score0, score1
+    sc0, sc1 = score0, score1
+
+    while sc0 < goal and sc1 < goal:
+        if who == 0:
+            # Player 0's turn
+            num_rolls = strategy0(sc0, sc1)
+            sc0 = update(num_rolls, sc0, sc1, dice)
+        else:
+            # Player 1's turn
+            num_rolls = strategy1(sc1, sc0)
+            sc1 = update(num_rolls, sc1, sc0, dice)
+        
+        # Switch turns
+        who = 1 - who
+
+    return sc0, sc1
 
 
 #######################
