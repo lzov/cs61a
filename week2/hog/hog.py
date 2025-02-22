@@ -227,6 +227,12 @@ def always_roll(n):
     assert n >= 0 and n <= 10
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+    
+    def strat (sc0, sc1):
+        return n
+    
+    return strat
+    
     # END PROBLEM 6
 
 
@@ -258,6 +264,18 @@ def is_always_roll(strategy, goal=GOAL):
     """
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    
+    expected = strategy(0, 0)
+
+    # Check all combinations of score and opponent_score
+    for score in range(goal):
+        for opponent_score in range(goal):
+            if strategy(score, opponent_score) != expected:
+                return False  # Found a different result
+
+    return True 
+    
+    
     # END PROBLEM 7
 
 
@@ -274,6 +292,7 @@ def make_averaged(original_function, times_called=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    
     # END PROBLEM 8
 
 
