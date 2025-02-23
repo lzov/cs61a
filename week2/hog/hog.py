@@ -292,6 +292,12 @@ def make_averaged(original_function, times_called=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def averaged_function(*args):
+        total = 0
+        for _ in range(times_called):
+            total += original_function(*args)
+        return total / times_called
+    return averaged_function
     
     # END PROBLEM 8
 
@@ -305,6 +311,21 @@ def max_scoring_num_rolls(dice=six_sided, times_called=1000):
     1
     """
     # BEGIN PROBLEM 9
+    
+    max_avg = -1  # Track the maximum average score
+    best_num_rolls = 1  # Track the number of dice that gives the maximum average
+
+    for num_rolls in range(1, 11):  # Try 1 to 10 dice
+        total = 0
+        for _ in range(times_called):  # Simulate `times_called` turns
+            total += roll_dice(num_rolls, dice)  # Roll `num_rolls` dice and add to total
+        avg = total / times_called  # Calculate average score for this number of dice
+
+        if avg > max_avg:  # Update if this average is the best so far
+            max_avg = avg
+            best_num_rolls = num_rolls
+
+    return best_num_rolls
     "*** YOUR CODE HERE ***"
     # END PROBLEM 9
 
@@ -350,14 +371,33 @@ def boar_strategy(score, opponent_score, threshold=11, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore score and Sus Fuss.
     """
     # BEGIN PROBLEM 10
-    return num_rolls  # Remove this line once implemented.
+    bbrawl = boar_brawl(score, opponent_score)
+    if (bbrawl >= threshold):
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
 def sus_strategy(score, opponent_score, threshold=11, num_rolls=6):
     """This strategy returns 0 dice when your score would increase by at least threshold."""
     # BEGIN PROBLEM 11
-    return num_rolls  # Remove this line once implemented.
+    
+    bbrawl = boar_brawl(score, opponent_score)
+
+    # Calculate new score after Boar Brawl
+    new_score = score + bbrawl
+
+    # Apply Sus Fuss rule to the new score
+    adjusted_score = sus_points(new_score)
+
+    # Calculate the total score increase
+    score_increase = adjusted_score - score
+    if score_increase >= threshold:
+        return 0
+    else:
+        return num_rolls
+    
     # END PROBLEM 11
 
 
