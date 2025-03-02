@@ -33,6 +33,11 @@ def product(n, term):
     """
     "*** YOUR CODE HERE ***"
 
+    prod = 1
+    for i in range(1, n + 1):  # Loop over numbers from 1 to n
+        prod = mul(prod, term(i))  # Multiply the current product by term(i)
+    return prod
+
 
 def accumulate(fuse, start, n, term):
     """Return the result of fusing together the first n terms in a sequence 
@@ -54,7 +59,11 @@ def accumulate(fuse, start, n, term):
     19
     """
     "*** YOUR CODE HERE ***"
-
+    res = start
+    k = 1
+    while k <= n:
+        res, k = fuse(res, term(k)), k + 1
+    return res
 
 def summation_using_accumulate(n, term):
     """Returns the sum: term(1) + ... + term(n), using accumulate.
