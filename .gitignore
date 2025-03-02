@@ -1,0 +1,10 @@
+# Ignore specific files
+.dockerignore
+Dockerfile
+docker-compose.debug.yml
+docker-compose.yml
+requirements.txt
+
+# Ignore specific files in the .vscode directory
+.vscode/launch.json
+.vscode/tasks.json
