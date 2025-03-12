@@ -14,6 +14,9 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
+    
+    return lambda x: f(g(x)) == g(f(x))
+
 
 
 def sum_digits(y):
@@ -60,6 +63,14 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def condi(n):
+        sum = 0
+        for i in range(1, n +1):
+            if condition(n, i):
+                sum += 1
+        return sum
+    return condi
+        
 
 
 def multiple(a, b):
