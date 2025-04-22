@@ -14,12 +14,18 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
+<<<<<<< HEAD
     def check_composition(x):
         fg_x = f(g(x))
         gf_x = g(f(x))
         return fg_x == gf_x
     return check_composition
         
+=======
+    
+    return lambda x: f(g(x)) == g(f(x))
+
+>>>>>>> 18b184225c7af9079fda6f6fe2d175312f5263f4
 
 
 def sum_digits(y):
@@ -66,6 +72,14 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def condi(n):
+        sum = 0
+        for i in range(1, n +1):
+            if condition(n, i):
+                sum += 1
+        return sum
+    return condi
+        
 
 
 def multiple(a, b):
